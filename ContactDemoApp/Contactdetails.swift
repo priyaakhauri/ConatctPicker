@@ -13,15 +13,39 @@ import UIKit
 class Contactdetails : UIViewController, UITextFieldDelegate
 {
     
+   
     @IBOutlet weak var firstNameTextVar: UITextField!
     @IBOutlet weak var secondNameTextVar: UITextField!
     @IBOutlet weak var emailTextVar: UITextField!
     @IBOutlet weak var phoneNumVar: UITextField!
     @IBOutlet weak var countryNameTextVar: UITextField!
     var keyboradHideforEditNoteVarRem : UIBarButtonItem!
+    var appDel : AppDelegate? = nil
     
     
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+    @IBAction func saveContactDetailsFunc(_ sender: UIButton) {
+        
+        appDel = UIApplication.shared.delegate as? AppDelegate
+        
+        guard let _context = appDel?.managedObjectContext else { return }
+        
+        // Using the Managed Object Context, lets create a new entry into entity "Task"
+        let object = NSEntityDescription.insertNewObject(forEntityName: "ContactDetails", into:_context) as! ContactDetails
+        object.firstname = firstNameTextVar.text
+        object.secondname = secondNameTextVar.text
+        object.email = emailTextVar.text
+        object.phone = phoneNumVar.text
+        object.country = countryNameTextVar.text
+        object.completed = false
+        
+        appDel?.saveContext()
+        self.navigationController?.popViewController(animated: true)
+        
+        
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         if textField == self.firstNameTextVar {
             self.secondNameTextVar.becomeFirstResponder()
         }else if textField == self.secondNameTextVar{
@@ -58,6 +82,7 @@ class Contactdetails : UIViewController, UITextFieldDelegate
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -17,6 +17,7 @@
 		793BC19420DE111900706C35 /* addCon.png in Resources */ = {isa = PBXBuildFile; fileRef = 793BC19320DE111800706C35 /* addCon.png */; };
 		793BC19720DE1A6F00706C35 /* Contactdetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793BC19620DE1A6F00706C35 /* Contactdetails.swift */; };
 		793BC19920DE1D0200706C35 /* ClsBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 793BC19820DE1D0200706C35 /* ClsBtn.png */; };
+		793BC19B20DE282300706C35 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793BC19A20DE282300706C35 /* SearchPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		793BC19320DE111800706C35 /* addCon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addCon.png; sourceTree = "<group>"; };
 		793BC19620DE1A6F00706C35 /* Contactdetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contactdetails.swift; sourceTree = "<group>"; };
 		793BC19820DE1D0200706C35 /* ClsBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClsBtn.png; sourceTree = "<group>"; };
+		793BC19A20DE282300706C35 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				793BC17C20DE0B5B00706C35 /* AppDelegate.swift */,
 				793BC17E20DE0B5B00706C35 /* ViewController.swift */,
 				793BC19620DE1A6F00706C35 /* Contactdetails.swift */,
+				793BC19A20DE282300706C35 /* SearchPageView.swift */,
 				793BC18020DE0B5B00706C35 /* Main.storyboard */,
 				793BC18620DE0B6600706C35 /* Assets.xcassets */,
 				793BC18820DE0B6600706C35 /* LaunchScreen.storyboard */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				793BC19B20DE282300706C35 /* SearchPageView.swift in Sources */,
 				793BC18520DE0B5B00706C35 /* ContactDemoApp.xcdatamodeld in Sources */,
 				793BC19720DE1A6F00706C35 /* Contactdetails.swift in Sources */,
 				793BC17F20DE0B5B00706C35 /* ViewController.swift in Sources */,
