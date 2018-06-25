@@ -26,6 +26,38 @@ class SearchPageView : UIViewController,UISearchBarDelegate
     
     @IBOutlet weak var mySearchBar: UISearchBar!
     
+    func searchBar(_ searchBar: UISearchBar,
+                   textDidChange searchText: String){
+        
+//        let predicate = NSPredicate(format: "completed == FALSE")
+        print(searchText)
+        let predicate = NSPredicate(format: "firstname contains[c] %@ || secondname contains[c] %@", searchText, searchText)
+        fetchedResultsController.fetchRequest.predicate = predicate
+        
+//        let fetchRequest: NSFetchRequest<ContactDetails> = ContactDetails.fetchRequest()
+//        fetchRequest.fetchBatchSize = 20
+//        let sortDescriptor = NSSortDescriptor(key: "firstname", ascending: true)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+//        let predicate = NSPredicate(format: "firstname contains[c] %@", searchText)
+//        fetchRequest.predicate = predicate
+//
+//        let  appDel = UIApplication.shared.delegate as? AppDelegate
+        
+        // Set the created predicate to our fetch request.
+        do {
+            // Perform the initial fetch to Core Data.
+            // After this step, the fetched results controller
+            // will only retrieve more records if necessary.
+            //try appDel?.managedObjectContext?.fetch(fetchRequest)
+            try fetchedResultsController.performFetch()
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        self.tableViewVar.reloadData()
+        
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.navigationItem.rightBarButtonItem = self.keyboradHideforEditNoteVarRem
 
@@ -155,20 +187,8 @@ extension SearchPageView : UITableViewDelegate, UITableViewDataSource
         
 
         cell.backgroundColor = UIColor.white
-        firstName  = UITextField(frame: CGRect(x: 0, y: 0, width:tableView.frame.width, height: 50.0))
-        firstName!.textAlignment = NSTextAlignment.left
-        firstName!.textColor = UIColor.black
-        firstName!.font = UIFont.systemFont(ofSize: 17)
-        firstName!.isSelected = false
-        firstName!.isUserInteractionEnabled = false
-        
-        firstName?.text = task.firstname! + " " +  task.secondname!
-        
 
-
-
-       
-        cell.contentView.addSubview(firstName! )
+        cell.textLabel?.text = task.firstname! + " " +  task.secondname!
         // Finally we return the updated cell
         return cell
     }
