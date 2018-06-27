@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  ContactDemoApp
 //
-//  Created by Ankur Akhauri on 23/06/18.
+//  Created by Priya on 23/06/18.
 //  Copyright © 2018 DemoApp. All rights reserved.
 //
 

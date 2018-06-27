@@ -2,7 +2,7 @@
 //  SearchPageView.swift
 //  ContactDemoApp
 //
-//  Created by Ankur Akhauri on 23/06/18.
+//  Created by Priya on 23/06/18.
 //  Copyright © 2018 DemoApp. All rights reserved.
 //
 
@@ -29,19 +29,19 @@ class SearchPageView : UIViewController,UISearchBarDelegate
     func searchBar(_ searchBar: UISearchBar,
                    textDidChange searchText: String){
         
-//        let predicate = NSPredicate(format: "completed == FALSE")
+       // searchBar.text = searchText
         print(searchText)
-        let predicate = NSPredicate(format: "firstname contains[c] %@ || secondname contains[c] %@", searchText, searchText)
-        fetchedResultsController.fetchRequest.predicate = predicate
-        
-//        let fetchRequest: NSFetchRequest<ContactDetails> = ContactDetails.fetchRequest()
-//        fetchRequest.fetchBatchSize = 20
-//        let sortDescriptor = NSSortDescriptor(key: "firstname", ascending: true)
-//        fetchRequest.sortDescriptors = [sortDescriptor]
-//        let predicate = NSPredicate(format: "firstname contains[c] %@", searchText)
-//        fetchRequest.predicate = predicate
-//
-//        let  appDel = UIApplication.shared.delegate as? AppDelegate
+        if(searchText == "") {
+            let predicate = NSPredicate(format: "completed == FALSE")
+            fetchedResultsController.fetchRequest.predicate = predicate
+
+        } else {
+            let predicate = NSPredicate(format: "firstname contains[c] %@ || secondname contains[c] %@", searchText, searchText)
+            fetchedResultsController.fetchRequest.predicate = predicate
+
+        }
+
+
         
         // Set the created predicate to our fetch request.
         do {
@@ -80,12 +80,15 @@ class SearchPageView : UIViewController,UISearchBarDelegate
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
        mySearchBar.delegate = self
-        
+        let searchTextField:UITextField = mySearchBar.subviews[0].subviews.last as! UITextField
+        searchTextField.layer.cornerRadius = 15
+        searchTextField.textAlignment = NSTextAlignment.left
         
     }
     
@@ -146,6 +149,10 @@ class SearchPageView : UIViewController,UISearchBarDelegate
         
         return _fetchedResultsController!
     }
+    
+
+    
+   
 }
 
 extension SearchPageView : NSFetchedResultsControllerDelegate

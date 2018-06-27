@@ -2,7 +2,7 @@
 //  Contactdetails.swift
 //  ContactDemoApp
 //
-//  Created by Ankur Akhauri on 23/06/18.
+//  Created by Priya on 23/06/18.
 //  Copyright © 2018 DemoApp. All rights reserved.
 //
 
@@ -10,10 +10,19 @@ import Foundation
 import CoreData
 import UIKit
 
-class Contactdetails : UIViewController, UITextFieldDelegate
+class Contactdetails : UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource
 {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
-   
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return countryInfo?.count ?? 0
+    }
+    
+    var countryInfo : [[String:Any]]?
+    var countryInfoUpdated :Bool = false
+    @IBOutlet weak var dropDown: UIPickerView!
     @IBOutlet weak var firstNameTextVar: UITextField!
     @IBOutlet weak var secondNameTextVar: UITextField!
     @IBOutlet weak var emailTextVar: UITextField!
@@ -21,12 +30,10 @@ class Contactdetails : UIViewController, UITextFieldDelegate
     @IBOutlet weak var countryNameTextVar: UITextField!
     var keyboradHideforEditNoteVarRem : UIBarButtonItem!
     var appDel : AppDelegate? = nil
-    //@IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
+    
+    
     
     @IBOutlet weak var keyboardHeightLayoutConstrain: NSLayoutConstraint!
-    
-    
-    
     @IBAction func saveContactDetailsFunc(_ sender: UIButton) {
         
         if(self.isValidEmail(testStr: emailTextVar.text!) == false)
@@ -41,7 +48,7 @@ class Contactdetails : UIViewController, UITextFieldDelegate
             toastLabel.layer.cornerRadius = 10;
             toastLabel.clipsToBounds  =  true
             self.view.addSubview(toastLabel)
-            UIView.animate(withDuration: 10.0, delay: 0.5, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 5.0, delay: 0.5, options: .curveEaseOut, animations: {
                 toastLabel.alpha = 0.0
             }, completion: {(isCompleted) in
                 toastLabel.removeFromSuperview()
@@ -61,7 +68,7 @@ class Contactdetails : UIViewController, UITextFieldDelegate
             toastLabel.layer.cornerRadius = 10;
             toastLabel.clipsToBounds  =  true
             self.view.addSubview(toastLabel)
-            UIView.animate(withDuration: 10.0, delay: 0.5, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 5.0, delay: 0.5, options: .curveEaseOut, animations: {
                 toastLabel.alpha = 0.0
             }, completion: {(isCompleted) in
                 toastLabel.removeFromSuperview()
@@ -121,8 +128,16 @@ class Contactdetails : UIViewController, UITextFieldDelegate
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.navigationItem.rightBarButtonItem = self.keyboradHideforEditNoteVarRem
+        if(textField == countryNameTextVar){
+            dropDown.isHidden = false
+            textField.resignFirstResponder()
+        }else{
+            dropDown.isHidden = true
+            self.navigationItem.rightBarButtonItem = self.keyboradHideforEditNoteVarRem
+        }
+        
         print("TextField did begin editing method called")
+        
     }
     
     @IBAction func hideKeyboardBtnFunc(_ sender: Any) {
@@ -169,8 +184,63 @@ class Contactdetails : UIViewController, UITextFieldDelegate
         }
     }
     
+    func getCountryNames ()
+    {
+        let url = URL(string: "https://restcountries.eu/rest/v1/all")
+        
+        //JSON PARSING
+        URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [[String:Any]]
+                self.countryInfo = json
+                let firstCountry = (self.countryInfo![0])["name"] as! String
+                print(firstCountry)
+                self.countryInfoUpdated = true
+
+                
+            } catch let error as NSError {
+                print(error)
+            }
+        }).resume()
+        
+        
+        
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,
+                    viewForRow row: Int,
+                    forComponent component: Int,
+                    reusing view: UIView?) -> UIView
+    {
+        let countryLabel = UILabel(frame: CGRect(x: 0, y: 0, width: pickerView.frame.width, height: 20))
+        countryLabel.text = countryInfo![row]["name"] as? String
+        countryLabel.textColor = UIColor.brown
+        countryLabel.textAlignment = NSTextAlignment.center
+        return countryLabel
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int){
+        let countryNameView = pickerView.view(forRow: row, forComponent: component) as! UILabel
+        countryNameTextVar.text = countryNameView.text
+         dropDown.isHidden = true
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+         dropDown.isHidden = true
+        getCountryNames ()
+       
+        while(countryInfoUpdated == false){ // wait for restful Api read
+        }
+        self.dropDown.reloadAllComponents()
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardNotification(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillChangeFrame,
@@ -181,6 +251,7 @@ class Contactdetails : UIViewController, UITextFieldDelegate
         emailTextVar.delegate = self
         phoneNumVar.delegate = self
         countryNameTextVar.delegate = self
+        
         
         
         

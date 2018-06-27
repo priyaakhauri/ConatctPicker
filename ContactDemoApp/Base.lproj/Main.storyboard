@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search Page View-->
+        <!--Contacts-->
         <scene sceneID="Lmp-Nm-dUs">
             <objects>
                 <viewController id="D0x-Rs-LlC" customClass="SearchPageView" customModule="ContactDemoApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,12 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4h5-zU-2nC">
+                            <searchBar contentMode="redraw" placeholder="Search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4h5-zU-2nC">
                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="qGv-uB-7bf"/>
                                 </constraints>
+                                <color key="tintColor" red="0.1212767885" green="0.1513284419" blue="0.30086220850000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="41U-0W-Xns">
                                 <rect key="frame" x="0.0" y="114" width="375" height="553"/>
@@ -65,7 +72,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Woh-if-3oM"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wTd-OU-anP">
+                    <navigationItem key="navigationItem" title="Contacts" id="wTd-OU-anP">
                         <barButtonItem key="backBarButtonItem" title="Contacts" id="2e5-70-Bfh"/>
                         <barButtonItem key="rightBarButtonItem" image="ClsBtn.png" id="xQf-mM-L88">
                             <connections>
@@ -93,44 +100,41 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dU7-LV-5iJ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eSA-Te-qN1">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="eSA-Te-qN1">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="435"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addCon.png" translatesAutoresizingMaskIntoConstraints="NO" id="UjX-CL-gE6">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                            </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5VE-T2-zW8">
-                                                <rect key="frame" x="0.0" y="70" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Second Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVK-mh-U7O">
-                                                <rect key="frame" x="0.0" y="140" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="75" width="375" height="60"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t61-WH-pbC">
-                                                <rect key="frame" x="0.0" y="210" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="150" width="375" height="60"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mobile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xkX-rD-YU2">
-                                                <rect key="frame" x="0.0" y="280" width="375" height="60"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone (DDD-DDD-DDDD )" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xkX-rD-YU2">
+                                                <rect key="frame" x="0.0" y="225" width="375" height="60"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qcy-Ji-brR">
-                                                <rect key="frame" x="0.0" y="350" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="300" width="375" height="60"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="country-name"/>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qOe-TI-8Cz">
-                                                <rect key="frame" x="0.0" y="420" width="375" height="60"/>
+                                                <rect key="frame" x="0.0" y="375" width="375" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrZ-RV-KyB">
                                                         <rect key="frame" x="0.0" y="0.0" width="73.5" height="60"/>
@@ -162,20 +166,36 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BN-ep-yf3">
+                                        <rect key="frame" x="10" y="169" width="355" height="216"/>
+                                        <color key="backgroundColor" red="0.96147726004799516" green="1" blue="0.63782172689055594" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="qVz-J2-QLz" id="mqA-ab-R4P"/>
+                                            <outlet property="delegate" destination="qVz-J2-QLz" id="llt-4O-mYf"/>
+                                        </connections>
+                                    </pickerView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="eSA-Te-qN1" secondAttribute="trailing" id="4ex-Dw-hIK"/>
-                                    <constraint firstAttribute="bottom" secondItem="eSA-Te-qN1" secondAttribute="bottom" id="8to-dX-MmK"/>
-                                    <constraint firstAttribute="width" secondItem="eSA-Te-qN1" secondAttribute="width" id="VAI-Xo-i34"/>
+                                    <constraint firstAttribute="bottom" secondItem="4BN-ep-yf3" secondAttribute="bottom" constant="50" id="EUF-58-Awv"/>
+                                    <constraint firstAttribute="trailing" secondItem="4BN-ep-yf3" secondAttribute="trailing" constant="10" id="HzY-wJ-l6e"/>
+                                    <constraint firstAttribute="bottom" secondItem="eSA-Te-qN1" secondAttribute="bottom" id="N0V-1F-dON"/>
+                                    <constraint firstAttribute="width" secondItem="eSA-Te-qN1" secondAttribute="width" id="j8p-qn-JPN"/>
                                     <constraint firstItem="eSA-Te-qN1" firstAttribute="leading" secondItem="dU7-LV-5iJ" secondAttribute="leading" id="jRQ-WC-0Ps"/>
-                                    <constraint firstItem="eSA-Te-qN1" firstAttribute="top" secondItem="dU7-LV-5iJ" secondAttribute="top" id="y22-tY-yG7"/>
+                                    <constraint firstItem="4BN-ep-yf3" firstAttribute="leading" secondItem="dU7-LV-5iJ" secondAttribute="leading" constant="10" id="lBQ-aI-mSX"/>
+                                    <constraint firstItem="eSA-Te-qN1" firstAttribute="top" secondItem="dU7-LV-5iJ" secondAttribute="top" id="zx3-sF-YuG"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LPm-Ao-jA3" firstAttribute="bottom" secondItem="dU7-LV-5iJ" secondAttribute="bottom" id="9HM-DV-mJ0"/>
-                            <constraint firstItem="dU7-LV-5iJ" firstAttribute="top" secondItem="LPm-Ao-jA3" secondAttribute="top" id="fGj-T2-50H"/>
+                            <constraint firstItem="dU7-LV-5iJ" firstAttribute="top" secondItem="LPm-Ao-jA3" secondAttribute="top" id="PhH-wq-qWV"/>
                             <constraint firstItem="dU7-LV-5iJ" firstAttribute="leading" secondItem="LPm-Ao-jA3" secondAttribute="leading" id="fjs-4p-pwl"/>
                             <constraint firstItem="LPm-Ao-jA3" firstAttribute="trailing" secondItem="dU7-LV-5iJ" secondAttribute="trailing" id="xcx-NO-JZK"/>
                         </constraints>
@@ -190,6 +210,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="countryNameTextVar" destination="Qcy-Ji-brR" id="5wm-MB-8tf"/>
+                        <outlet property="dropDown" destination="4BN-ep-yf3" id="NKI-cz-0F2"/>
                         <outlet property="emailTextVar" destination="t61-WH-pbC" id="k2w-fk-Vxb"/>
                         <outlet property="firstNameTextVar" destination="5VE-T2-zW8" id="Lwi-F2-3Er"/>
                         <outlet property="keyboardHeightLayoutConstrain" destination="9HM-DV-mJ0" id="6bB-ct-IHv"/>
@@ -199,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGj-it-vJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1766" y="17"/>
+            <point key="canvasLocation" x="1765.5999999999999" y="16.641679160419791"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Gj-k4-4ao">
@@ -209,6 +230,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WsL-Bu-Jr1">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.6311661253235189" green="0.86297765540000004" blue="0.29729167972014897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.86297765540000004" green="0.63451739909956917" blue="0.1329224753904199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
