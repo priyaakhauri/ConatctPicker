@@ -29,7 +29,6 @@ class SearchPageView : UIViewController,UISearchBarDelegate
     func searchBar(_ searchBar: UISearchBar,
                    textDidChange searchText: String){
         
-       // searchBar.text = searchText
         print(searchText)
         if(searchText == "") {
             let predicate = NSPredicate(format: "completed == FALSE")
@@ -48,7 +47,6 @@ class SearchPageView : UIViewController,UISearchBarDelegate
             // Perform the initial fetch to Core Data.
             // After this step, the fetched results controller
             // will only retrieve more records if necessary.
-            //try appDel?.managedObjectContext?.fetch(fetchRequest)
             try fetchedResultsController.performFetch()
         } catch {
             let nserror = error as NSError
@@ -165,13 +163,7 @@ extension SearchPageView : NSFetchedResultsControllerDelegate
 
 extension SearchPageView : UITableViewDelegate, UITableViewDataSource
 {
-    /* public func numberOfSections(in tableView: UITableView) -> Int
-     {
-     // We will use the proxy variable to our fetched results
-     // controller and from that we try to get the sections
-     // from it. If not available we will ignore and return none (0).
-     return self.fetchedResultsController.sections?.count ?? 0
-     }*/
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -202,8 +194,7 @@ extension SearchPageView : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //            self.tableViewVar.remove(at: indexPath.row)
-            //tableViewVar.deleteRows(at: [indexPath], with: .fade)
+            
             let appDel = UIApplication.shared.delegate as? AppDelegate
             
             guard let _context = appDel?.managedObjectContext else { return }

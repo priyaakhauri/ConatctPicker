@@ -131,6 +131,7 @@ class Contactdetails : UIViewController, UITextFieldDelegate, UIPickerViewDelega
         if(textField == countryNameTextVar){
             dropDown.isHidden = false
             textField.resignFirstResponder()
+            
         }else{
             dropDown.isHidden = true
             self.navigationItem.rightBarButtonItem = self.keyboradHideforEditNoteVarRem
@@ -139,6 +140,15 @@ class Contactdetails : UIViewController, UITextFieldDelegate, UIPickerViewDelega
         print("TextField did begin editing method called")
         
     }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if(self.navigationItem.rightBarButtonItem != nil) {
+            keyboradHideforEditNoteVarRem = self.navigationItem.rightBarButtonItem
+            self.navigationItem.rightBarButtonItem = nil
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+   
     
     @IBAction func hideKeyboardBtnFunc(_ sender: Any) {
         if(self.navigationItem.rightBarButtonItem != nil) {
