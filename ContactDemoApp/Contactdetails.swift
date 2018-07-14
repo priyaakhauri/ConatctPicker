@@ -140,6 +140,7 @@ class Contactdetails : UIViewController, UITextFieldDelegate, UIPickerViewDelega
         print("TextField did begin editing method called")
         
     }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if(self.navigationItem.rightBarButtonItem != nil) {
             keyboradHideforEditNoteVarRem = self.navigationItem.rightBarButtonItem
